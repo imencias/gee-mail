@@ -3,35 +3,16 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
 		<script language="javascript" type="text/javascript">
-		
+
 		loadGeeMails();
 		document.write( "<strong>Inbox</strong>  (" + window.geemails.length + ")");
 		document.write( "<br />" );
 
-		document.write( "<div class=\"container\">" );
 		for(key in window.geemails){
-			document.write( "<tr><td>" + window.geemails[key].date + "</td>" );
-			document.write( "<td>" + window.geemails[key].sender + "</td>" );
-			document.write( "<td>" + window.geemails[key].subject + "</td></tr>" );
-			document.write( "<div class=\"content\">" + window.geemails[key].body + "</div>");
+			document.write( "<div class=\"msgContainer\">" );
+			document.write( "<div class=\"msgList\"><ul class=\"msg\"><li>" + window.geemails[key].date + "</li><li>" + window.geemails[key].sender + "</li><li>" + window.geemails[key].subject + "</li></ul></div>" );
+			document.write( "<div class=\"msgContent\">" + window.geemails[key].body + "</div></div><br />" );
 		}
-		
-		$(".header").click(function () {
-
-    $header = $(this);
-    //getting the next element
-    $content = $header.next();
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(500, function () {
-        //execute this after slideToggle is done
-        //change text of header based on visibility of content div
-        $header.text(function () {
-            //change text based on condition
-            return $content.is(":visible") ? "Collapse" : "Expand";
-        });
-    });
-
-});
 		</script>
 	</head>
 	<body>
