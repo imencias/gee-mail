@@ -14,8 +14,10 @@
 
 		loadGeeMails();
 		var inboxCount = window.geemails.length;
-		document.write( "<strong>Inbox</strong>  (" + inboxCount + ")");
-		document.write( "<br />" );
+
+		function updateInboxCount() {
+			document.getElementById("inboxTotal").innerHTML = "Inbox (" + inboxCount + ")";
+		}
 
 		function displayMail() {
 			for(key in window.geemails){
@@ -43,6 +45,8 @@
 		    div2.style.display = 'none';
 		    div2.innerHTML = m.body + '</div>';
 		    document.getElementById('main').appendChild(div2);
+
+		    updateInboxCount();
 		}
 
 
@@ -50,6 +54,7 @@
 	</head>
 	<body>
 		<div class="container" id="main">
+			<div id="inboxTotal">Inbox (<span></span>)</div>
 			<script>displayMail()</script>
 			<script>autoRetrieve()</script>
 		</div>
