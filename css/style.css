@@ -1,31 +1,30 @@
-.msgContainer {
-    width:100%;
-    border:1px solid #d3d3d3;
-}
-.msgContainer div {
-    width:100%;
-}
-.msgContainer .msgList {
-    background-color:#d3d3d3;
-    padding: 2px;
+.toggleDiv {
+    width: 100%;
+    background-color:#FFF;
+    padding: 1;
     cursor: pointer;
+    border-bottom: 1px solid #BBB;
     font-weight: bold;
 }
-.msgContainer .msgContent {
+
+.msgContent {
     display: none;
-    padding : 5px;
+    margin: 0 0 25 50;
+    padding: 10;
+    background-color: #EEE;
 }
 
-.msgContainer .msgList li.first{
+.msgList li.first{
 	margin: 0;
-	padding: 0;
+    float: left;
+    width: auto;
     list-style-type: none;
     display: inline-block;
 }
 
-.msgContainer .msgList li{
-	margin: 0;
-	padding: 0 15 0 0;
+.msgList li{
+	margin: 0 20 0 0;
+	padding: 0;
     list-style-type: none;
     display: inline-block;
 }

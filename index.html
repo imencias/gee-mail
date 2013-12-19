@@ -2,33 +2,56 @@
 	<head>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 		<script language="javascript" type="text/javascript">
 
+		$(document).ready(function() {
+   			 $(".msgContent").hide();
+  			 $('.toggleDiv').click(function() {
+       			$(this).next().slideToggle();
+   			});
+		});
+
 		loadGeeMails();
-		var inboxCount = window.geemails.length
+		var inboxCount = window.geemails.length;
 		document.write( "<strong>Inbox</strong>  (" + inboxCount + ")");
 		document.write( "<br />" );
 
-		for(key in window.geemails){
-			document.write( "<div class=\"msgContainer\">" );
-			document.write( "<div class=\"msgList\"><ul class=\"msg\"><li>" + window.geemails[key].date + "</li><li>" + window.geemails[key].sender + "</li><li>" + window.geemails[key].subject + "</li></ul></div>" );
-			document.write( "<div class=\"msgContent\">" + window.geemails[key].body + "</div></div><br />" );
+		function displayMail() {
+			for(key in window.geemails){
+				document.write( "<div class=\"toggleDiv\"><ul class=\"msgList\"><li>" + window.geemails[key].date + "</li><li>" + window.geemails[key].sender + "</li><li>" + window.geemails[key].subject + "</li></ul></div></a>" );
+				document.write( "<div class=\"msgContent\">" + window.geemails[key].body + "</div>" );
+			}
 		}
 
 		function autoRetrieve() {
-			window.geemails.push ( getNewMessage() );
+			var newMsg = getNewMessage();
 			inboxCount++;
-			document.write( window.geemails[inboxCount-1].subject);
+			addMsg( newMsg );
+			window.geemails.push( newMsg );
 			setTimeout( 'autoRetrieve()', 6000 );
 		}
 
-		autoRetrieve();
+		function addMsg( m ) {
+		    var div1 = document.createElement('div');
+		    div1.className = 'toggleDiv';
+		    div1.innerHTML = '<ul class=\"msgList\"><li>' + m.date + '</li><li>' + m.sender + '</li><li>' + m.subject + '</li></ul></div>';
+
+		    document.getElementById('main').appendChild(div1);
+		    var div2 = document.createElement('div');
+		    div2.className = 'msgContent';
+		    div2.style.display = 'none';
+		    div2.innerHTML = m.body + '</div>';
+		    document.getElementById('main').appendChild(div2);
+		}
+
 
 		</script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			<script>displayMail()</script>
+			<script>autoRetrieve()</script>
 		</div>
 	</body>
 </html>
