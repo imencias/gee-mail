@@ -6,11 +6,16 @@
 		<script language="javascript" type="text/javascript">
 
 		$(document).ready(function() {
+			displayMail();
+			autoRetrieve();
+
    			 $(".msgContent").hide();
-  			 $('.toggleDiv').click(function() {
-       			$(this).next().slideToggle();
-   			});
 		});
+
+			function toggleThis (t) {
+				$(t).next().slideToggle();
+				console.log(t);
+			}
 
 		loadGeeMails();
 		var inboxCount = window.geemails.length;
@@ -21,8 +26,7 @@
 
 		function displayMail() {
 			for(key in window.geemails){
-				document.write( "<div class=\"toggleDiv\"><ul class=\"msgList\"><li>" + window.geemails[key].date + "</li><li>" + window.geemails[key].sender + "</li><li>" + window.geemails[key].subject + "</li></ul></div></a>" );
-				document.write( "<div class=\"msgContent\">" + window.geemails[key].body + "</div>" );
+				addMsg( window.geemails[key] );
 			}
 		}
 
@@ -37,9 +41,10 @@
 		function addMsg( m ) {
 		    var div1 = document.createElement('div');
 		    div1.className = 'toggleDiv';
+		    div1.onclick = function(){toggleThis( this )};
 		    div1.innerHTML = '<ul class=\"msgList\"><li>' + m.date + '</li><li>' + m.sender + '</li><li>' + m.subject + '</li></ul></div>';
-
 		    document.getElementById('main').appendChild(div1);
+
 		    var div2 = document.createElement('div');
 		    div2.className = 'msgContent';
 		    div2.style.display = 'none';
@@ -49,14 +54,11 @@
 		    updateInboxCount();
 		}
 
-
 		</script>
 	</head>
 	<body>
 		<div class="container" id="main">
 			<div id="inboxTotal">Inbox (<span></span>)</div>
-			<script>displayMail()</script>
-			<script>autoRetrieve()</script>
 		</div>
 	</body>
 </html>
