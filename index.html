@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<title>GeeMail Inbox - Dev League</title>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -14,14 +15,13 @@
 
 			function toggleThis (t) {
 				$(t).next().slideToggle();
-				console.log(t);
 			}
 
 		loadGeeMails();
 		var inboxCount = window.geemails.length;
 
 		function updateInboxCount() {
-			document.getElementById("inboxTotal").innerHTML = "Inbox (" + inboxCount + ")";
+			document.getElementById("inboxTotal").innerHTML = inboxCount;
 		}
 
 		function displayMail() {
@@ -35,7 +35,7 @@
 			inboxCount++;
 			addMsg( newMsg );
 			window.geemails.push( newMsg );
-			setTimeout( 'autoRetrieve()', 6000 );
+			setTimeout( 'autoRetrieve()', 10000 );
 		}
 
 		function addMsg( m ) {
@@ -43,13 +43,13 @@
 		    div1.className = 'toggleDiv';
 		    div1.onclick = function(){toggleThis( this )};
 		    div1.innerHTML = '<ul class=\"msgList\"><li>' + m.date + '</li><li>' + m.sender + '</li><li>' + m.subject + '</li></ul></div>';
-		    document.getElementById('main').appendChild(div1);
+		    document.getElementById('messages').appendChild(div1);
 
 		    var div2 = document.createElement('div');
 		    div2.className = 'msgContent';
 		    div2.style.display = 'none';
 		    div2.innerHTML = m.body + '</div>';
-		    document.getElementById('main').appendChild(div2);
+		    document.getElementById('messages').appendChild(div2);
 
 		    updateInboxCount();
 		}
@@ -58,7 +58,24 @@
 	</head>
 	<body>
 		<div class="container" id="main">
-			<div id="inboxTotal">Inbox (<span></span>)</div>
+			<a href="#" onclick="displayMail()"><img src="images/geemail.png" id="logo" /></a>
+			<div class="navigation">
+				<ul>
+					<li>Inbox (<span id="inboxTotal"></span>)</li>
+					<li>Sent Mail</li>
+					<li>Drafts</li>
+					<li>Trash</li>
+				</ul>
+			</div>
+			<div class="messagesHeader">
+				<ul>
+					<li>Date</li>
+					<li>Sender</li>
+					<li>Subject</li>
+				</ul>
+			</div>
+			<div class="geemails" id="messages">
+			</div>
 		</div>
 	</body>
 </html>

@@ -1,29 +1,81 @@
-.toggleDiv {
-    width: 100%;
-    background-color:#FFF;
-    padding: 1;
-    cursor: pointer;
-    border-bottom: 1px solid #BBB;
+body, .container {
+    width: auto;
+    height: auto;
+    font-family: 'Helvectica', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: none;
+}
+
+#logo {
+    width: 240px;
+    height: 75px;
+    border: 0;
+}
+
+#inboxTotal {
     font-weight: bold;
+}
+
+.geemails {
+    font-size: 14px;
+    border: 1px solid #EFEFEF;
+    margin: 0;
+    overflow: scroll;
+    height: 60%;
+}
+
+.navigation {
+    margin: 0;
+    line-height: 2em;
+    font-weight: 400;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.messagesHeader {
+    font-weight: bold;
+    background-color: #222;
+    color: #FFF;
+    padding: 2 0 5 0;
+}
+
+.geemails .messgaesHeader ul:first-child {
+    margin: 0 900 0 0;
+}
+
+.messagesHeader li{
+    margin: 0 300 0 0;
+    list-style-type: none;
+    display: inline-block;
+    list-style-type: none;
+}
+
+.toggleDiv {
+    background-color:#FFF;
+    padding: 0;
+    cursor: pointer;
+    border-top: 1px solid #BBB;
+    font-weight: bold;
+    margin: 0;
 }
 
 .msgContent {
     display: none;
-    margin: 0 0 25 50;
-    padding: 10;
-    background-color: #EEE;
+    color: #333;
+    margin: 0 75 25 75;
+    line-height: 1.5em;
 }
 
 .msgList li.first{
-	margin: 0;
-    float: left;
-    width: auto;
     list-style-type: none;
     display: inline-block;
 }
 
 .msgList li{
-	margin: 0 20 0 0;
+	margin: 0 50 0 0;
 	padding: 0;
     list-style-type: none;
     display: inline-block;
